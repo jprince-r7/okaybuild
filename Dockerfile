@@ -1,10 +1,6 @@
-FROM tomcat:8
-
-MAINTAINER phithon <root@leavesongs.com>
-
-RUN set -ex \
-    && rm -rf /usr/local/tomcat/webapps/* \
-    && chmod a+x /usr/local/tomcat/bin/*.sh
-
-COPY fastjson-1.0.war /usr/local/tomcat/webapps/ROOT.war
+FROM ubuntu:latest
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get dist-upgrade -y
+RUN apt-get install default-jdk vim net-tools wget -y
 EXPOSE 8080
