@@ -1,7 +1,10 @@
-FROM vulhub/docker:18.03.0
+FROM tomcat:8
 
-LABEL maintainer="phithon <root@leavesongs.com>"
+MAINTAINER phithon <root@leavesongs.com>
 
-ADD docker-entrypoint.sh /
+RUN set -ex \
+    && rm -rf /usr/local/tomcat/webapps/* \
+    && chmod a+x /usr/local/tomcat/bin/*.sh
 
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+COPY fastjson-1.0.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
